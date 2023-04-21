@@ -1,0 +1,4 @@
+class UsuariosService {
+    obtenerUsuario() {}
+    registrarUsuario(){}
+}
