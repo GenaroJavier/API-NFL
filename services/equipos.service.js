@@ -1,16 +1,11 @@
 const  obtenerConexion  = require('../libs/postgres');
-const pool = require('../libs/postgres');
+const sequelize = require('../libs/sequelize');
 class EquiposService {
-
-    constructor(){
-        this.pool = pool;
-        this.pool.on('error', (err) => console.log(err));
-    }
 
     async obtenerEquipos(){
         const query = "select * from tbl_equipos";
-        const respuesta = await pool.query(query);
-        return respuesta.rows;
+        const [data] = await sequelize.query(query);
+        return data;
     }
 
     async obtenerInfoEquipo(id_equipo){
