@@ -1,16 +1,9 @@
-const { Client } = require("pg");
+const { Pool } = require("pg");
+const { config } = require('../config/config');
 
-async function obtenerConexion() {
-    const cliente = new Client({
-        host: "db.cfdcivungkitcfiphwrz.supabase.co",
-        port: 5432,
-        user: 'postgres',
-        password: 'elgurudelemparrillado',
-        database: 'postgres',
-    });
+const pass = encodeURIComponent(config.dbPassword);
+const Uri = `postgres://postgres:${pass}@db.cfdcivungkitcfiphwrz.supabase.co:6543/postgres`;
 
-    await cliente.connect();
-    return cliente;
-}
+const pool = new Pool({ connectionString: Uri });
 
-module.exports = obtenerConexion;
+module.exports = pool;
